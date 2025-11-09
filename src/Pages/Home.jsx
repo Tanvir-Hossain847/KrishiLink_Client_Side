@@ -9,7 +9,7 @@ const Home = () => {
     return (
         <div>
                   <div className='min-h-screen'>
-                <header className='py-10'>
+                <header className='pt-10'>
                     <HeroBanner></HeroBanner>
                 </header>
 

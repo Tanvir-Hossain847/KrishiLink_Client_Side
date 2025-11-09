@@ -1,15 +1,22 @@
 import React from 'react';
+import Slider from './Slider';
+import { Link } from 'react-router';
 
 const HeroBanner = () => {
     return (
         <div className='w-11/12 mx-auto flex justify-between gap-15'>
-            <div className="space-y-2">
-            <h1 className='font-bold primary text-4xl text-emerald-700'>Lorem ipsum dolor sit amet.</h1>
-            <p className='primary'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut ab a non, ratione deserunt voluptatibus deleniti eligendi recusandae rem cupiditate quibusdam reprehenderit rerum tempore aliquid consequatur officia quos quo dignissimos hic eos! Explicabo numquam inventore, perspiciatis at, libero voluptate pariatur quis iste fugiat eius veritatis, repellendus nesciunt nam voluptas vitae?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi soluta corrupti sequi ipsa nesciunt, nobis amet temporibus assumenda placeat dolorem! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis at, officia aspernatur dolor laudantium distinctio assumenda harum itaque, dolore ipsum sapiente, earum aliquid quidem molestias vero! Quos accusamus minima nihil facilis quia voluptatibus eligendi porro exercitationem atque! Dicta corrupti, expedita inventore animi nulla, deleniti repudiandae, maiores voluptate non enim ipsam possimus repellendus quos beatae itaque? Enim iusto culpa dolorem odit ad illo qui soluta quibusdam corporis laboriosam, saepe repudiandae ea quo distinctio pariatur porro fuga reiciendis repellendus. Voluptatum cupiditate reprehenderit suscipit! Amet ut cum inventore earum. Quam, labore consequatur voluptatibus quas, enim iste laborum ratione delectus ipsum, quibusdam ducimus. Eligendi.
+            <div className="space-y-4">
+            <h1 className='font-bold primary text-4xl text-emerald-600'>Empowering Farmers, Feeding the Nation</h1>
+            <p className='primary text-lg font-bold'>
+                Join a trusted platform where farmers and buyers trade crops directly — no middlemen, no hassle.
             </p>
+            <p className='primary'>KrishiLink is a modern agricultural marketplace that bridges the gap between farmers and buyers. Our mission is to make crop trading simple, transparent, and fair. Farmers can showcase their harvests, and buyers can easily discover fresh, quality produce straight from the source — all within a secure, easy-to-use platform.</p>
+            <div className="">
+                <Link className='btn bg-emerald-600 p-6 text-white text-center mt-3 hover:scale-105 transition-all duration-100' to={'/allcrops'}>Explore All Crops</Link>
+            </div>
             </div>
             <div className="">
-                <img className='w-1500' src="https://i.ibb.co.com/nqdhSNYx/2259129.jpg" alt="" />
+                <Slider></Slider>
             </div>
         </div>
     );

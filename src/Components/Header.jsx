@@ -12,13 +12,24 @@ const Header = () => {
         .catch()
     }
     const links = <>
-    <li><NavLink to='/'>Home</NavLink></li>
-    <li><NavLink to='/products'>My Produdcts</NavLink></li>
-    <li><NavLink to='/bids'>My Bids</NavLink></li>
-    <li><NavLink to='/profile'>My Profile</NavLink></li>
+    
+    {
+      user ? <>
+      <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/'>Home</NavLink></li>
+      <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/allcrops'>All Products</NavLink></li>
+      <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/bids'>Add Crops</NavLink></li>
+      <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/bids'>My Posts</NavLink></li>
+      <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/profile'>My Interest</NavLink></li>
+      </> 
+      : 
+      <>
+      <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/'>Home</NavLink></li>
+      <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/products'>All Crops</NavLink></li>
+      </>
+    }
     </>
     return (
-        <div className="lg:px-20 mx-auto navbar shadow-sm shadow-emerald-700">
+        <div className="lg:px-12 mx-auto navbar shadow-sm shadow-emerald-700">
   <div className="navbar-start">
     <div className="dropdown">
        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -28,7 +39,7 @@ const Header = () => {
           </div>
       <ul
         tabIndex={0}
-        className="menu primary menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow">
+        className="menu primary menu-sm dropdown-content rounded-box z-50 mt-3 w-52 p-2 shadow">
        {links}
       </ul>
     </div>
@@ -36,7 +47,7 @@ const Header = () => {
       <div className="">
         <img className='w-10' src="https://i.ibb.co.com/n27cQDZ/Untitled-design-1-removebg-preview.png" alt="" />
       </div>
-    <Link to='/' className='font-bold text-emerald-800 text-2xl'>
+    <Link to='/' className='font-bold text-emerald-600 text-2xl'>
     KRISHI<span className='text-yellow-500'>LINK</span>
     </Link>
     </div>
@@ -50,11 +61,11 @@ const Header = () => {
     {
         user ? 
         (<>
-        <Link to={'/profile'} className="bg-emerald-700 rounded-4xl p-1"><img src={user?.photoURL || 'https://images.unsplash.com/photo-1747592771443-e15f155b1faf?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyN3x8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=60&w=500'} className='lg:w-12 lg:h-12 w-10 h-10 rounded-full' title={user.displayName} /></Link>
-        <button onClick={handleSignout} className='btn bg-emerald-800 text-white ml-2'>Log Out</button>
+        <Link to={'/profile'} className="rounded-4xl"><img src={user?.photoURL || 'https://images.unsplash.com/photo-1747592771443-e15f155b1faf?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyN3x8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=60&w=500'} className='lg:w-12 lg:h-12 w-10 h-10 rounded-full' title={user.displayName} /></Link>
+        <button onClick={handleSignout} className='btn bg-emerald-600 text-white ml-2'>Log Out</button>
         </>) : (<>
-         <NavLink className='btn border-none bg-emerald-800 !text-white mr-1 ' to='/register'>Register</NavLink>
-       <NavLink className='btn bg-emerald-800 border-none mr-1 !text-white' to='/login'>Login</NavLink>
+         <NavLink className='btn border-none bg-emerald-600 !text-white mr-1 ' to='/register'>Register</NavLink>
+       <NavLink className='btn bg-emerald-600 border-none mr-1 !text-white' to='/login'>Login</NavLink>
         </>)
 
     }

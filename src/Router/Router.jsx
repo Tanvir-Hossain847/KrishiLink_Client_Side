@@ -7,6 +7,8 @@ import Root from '../Layouts/Root';
 import AllProducts from '../Pages/AllProducts';
 import BIds from '../Pages/BIds';
 import Profile from '../Pages/Profile';
+import ErrorPage from '../Pages/ErrorPage';
+import SingleCropDetail from '../Pages/SingleCropDetail';
 
 export const router = createBrowserRouter([
   {
@@ -20,8 +22,13 @@ export const router = createBrowserRouter([
             element:<Home></Home>,
         },
         {
-          path: '/products',
-          element: <AllProducts></AllProducts>
+          path: '/allcrops',
+          element: <AllProducts></AllProducts>,
+          loader: () => fetch('http://localhost:3000/myproducts')
+        },
+        {
+          path: '/allcrops/:id',
+          element: <SingleCropDetail></SingleCropDetail>
         },
         {
           path: '/bids',
@@ -39,7 +46,10 @@ export const router = createBrowserRouter([
           path:'/login' ,
          element:<Login></Login>
         },
-       
     ]
   },
+  {
+    path: '/*',
+    element: <ErrorPage></ErrorPage>
+  }
 ]);

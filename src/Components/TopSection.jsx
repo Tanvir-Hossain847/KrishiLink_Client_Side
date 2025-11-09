@@ -9,7 +9,7 @@ const TopSection = () => {
                             <img className='w-80 rounded-2xl' src="https://i.ibb.co.com/nqdhSNYx/2259129.jpg" alt="" />
                             <img className='w-80 rounded-2xl' src="https://i.ibb.co.com/nqdhSNYx/2259129.jpg" alt="" />
                         </div>
-                <Link to={'/products'} className='btn mt-8 bg-emerald-700 text-white'>Show All</Link>
+                <Link to={'/products'} className='btn mt-8 bg-emerald-600 text-white'>Show All</Link>
         </div>
     );
 };
