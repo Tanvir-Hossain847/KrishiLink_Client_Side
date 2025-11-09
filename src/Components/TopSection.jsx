@@ -1,15 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router';
+import SingleCards from './SingleCards';
 
-const TopSection = () => {
+const TopSection = ({data}) => {
+    console.log(data)
+    
+    const letestSix = data.slice(-6).reverse()
+
     return (
-        <div className='text-center'>
-            <div className="flex w-11/12 mx-auto justify-between">
-                            <img className='w-80 rounded-2xl' src="https://i.ibb.co.com/nqdhSNYx/2259129.jpg" alt="" />
-                            <img className='w-80 rounded-2xl' src="https://i.ibb.co.com/nqdhSNYx/2259129.jpg" alt="" />
-                            <img className='w-80 rounded-2xl' src="https://i.ibb.co.com/nqdhSNYx/2259129.jpg" alt="" />
+        <div className='mx-auto'>
+            <div className="w-11/12 mx-auto grid grid-cols-3 gap-10">
+                           {
+                            letestSix.map(product => <SingleCards product={product}></SingleCards>)
+                           }
                         </div>
+                <div className="text-center">
                 <Link to={'/products'} className='btn mt-8 bg-emerald-600 text-white'>Show All</Link>
+                </div>
         </div>
     );
 };

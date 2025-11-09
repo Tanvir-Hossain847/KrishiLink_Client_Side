@@ -20,6 +20,7 @@ export const router = createBrowserRouter([
             index: true,
             path:'/',
             element:<Home></Home>,
+            loader: () => fetch('http://localhost:3000/myproducts')
         },
         {
           path: '/allcrops',
