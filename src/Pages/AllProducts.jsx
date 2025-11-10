@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { use, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import SingleCards from '../Components/SingleCards';
 import { FaSearch } from 'react-icons/fa';

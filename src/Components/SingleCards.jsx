@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
+import Spinner from './Spinner';
 
 const SingleCards = ({product}) => {
+  if(!product) return <Spinner></Spinner>
     
    const {_id ,name, type, pricePerUnit, quantity, description, location, image} = product
     
@@ -24,7 +26,7 @@ const SingleCards = ({product}) => {
                  <p className='primary font-bold'>Available: {quantity}</p>
                  <p className='primary font-bold'>From: {location}</p>
                  <div className="card-actions justify-end">
-                   <Link to={`/allcrops/${_id}`} className="btn bg-emerald-600 text-white">Buy Now</Link>
+                   <Link to={`/allcrops/${_id}`} className="btn bg-emerald-600 text-white">View Detail</Link>
                  </div>
                </div>
               </div>

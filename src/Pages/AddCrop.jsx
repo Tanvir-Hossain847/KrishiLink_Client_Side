@@ -1,7 +1,9 @@
 import React, { use } from 'react';
 import { AuthContext } from '../Context/AuthContext';
+import { useNavigate } from 'react-router';
 
 const AddCrop = () => {
+    const navigate = useNavigate()
 
     const {user} = use(AuthContext)
 
@@ -34,6 +36,7 @@ const AddCrop = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data);
+            navigate('/myposts')
         })
         .catch(err => {
             console.log(err);
@@ -66,6 +69,7 @@ const AddCrop = () => {
                 <option value="">Select Type</option>
                 <option value="Fruits">Fruits</option>
                 <option value="Vegetables">Vagetables</option>
+                <option value="Spice">Spice</option>
                </select>
 
                <label className="label text-emerald-600 font-bold text-sm">Price Per Unit (TK)</label>

@@ -11,6 +11,7 @@ import ErrorPage from '../Pages/ErrorPage';
 import SingleCropDetail from '../Pages/SingleCropDetail';
 import AddCrop from '../Pages/AddCrop';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import MyPosts from '../Pages/MyPosts';
 
 export const router = createBrowserRouter([
   {
@@ -31,13 +32,25 @@ export const router = createBrowserRouter([
         },
         {
           path: '/allcrops/:id',
-          element: <SingleCropDetail></SingleCropDetail>
+          element: (
+            <PrivateRoute>
+              <SingleCropDetail></SingleCropDetail>
+            </PrivateRoute>
+          ) 
         },
         {
           path: '/addcrops',
           element:(
             <PrivateRoute>
               <AddCrop></AddCrop>
+            </PrivateRoute>
+          )
+        },
+        {
+          path: '/myposts',
+          element: (
+            <PrivateRoute>
+              <MyPosts></MyPosts>
             </PrivateRoute>
           )
         },
