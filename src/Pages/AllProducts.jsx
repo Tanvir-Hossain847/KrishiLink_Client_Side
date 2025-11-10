@@ -42,7 +42,7 @@ const AllProducts = () => {
             </div>
         {
             searchLoading ? <Spinner></Spinner> :
-        <div className="w-11/12 mx-auto space-y-6">
+        <div className="w-11/12 mx-auto space-y-6 py-6">
             <h1 className='font-bold text-xl'>Total {filteredData.length} Produce Found</h1>
         <div >
             {

@@ -2,7 +2,7 @@ import React from 'react';
 
 const SingleNews = ({singlenews}) => {
     return (
-        <div className='space-y-2 rounded-xl shadow-xl'>
+        <div className='space-y-2 rounded-xl shadow-xl hover:scale-102 transition-all duration-200'>
             <div className="">
                 <img className='rounded-xl' src={singlenews.imageUrl} alt="" />
             </div>

@@ -8,7 +8,7 @@ const SingleCards = ({product}) => {
     return (
         <div>
             <div className="">
-            <div className="card bg-base-100 w-96 h-120 shadow-2xl hover:scale-103 transition-all duration-200">
+            <div className="card bg-base-100 w-full mx-auto h-125 shadow-2xl hover:scale-103 transition-all duration-200">
                <figure>
                  <img
                    src={image}

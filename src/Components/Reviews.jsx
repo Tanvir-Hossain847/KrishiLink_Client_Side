@@ -5,7 +5,7 @@ const Reviews = () => {
     return (
         <div className='w-11/12 mx-auto'>
             <div className=" grid grid-cols-3 gap-5 p-">
-            <div className="bg- border-y-3 border-emerald-600 shadow-xl p-3 space-y-2 rounded-xl">
+            <div className="bg- border-y-3 border-emerald-600 shadow-xl p-3 space-y-2 rounded-xl hover:scale-102 transition-all duration-200">
                 <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2 space-y-1">
                         <img className='w-15 rounded-4xl' src="https://images.pexels.com/photos/45852/farmer-smile-man-person-45852.jpeg" alt="" />
@@ -25,7 +25,7 @@ const Reviews = () => {
                 <p>This platform connected me to buyers I couldn't reach before. Posting crops is simple and payment came through the same week. Highly recommended for small farmers.</p>
             </div>
 
-            <div className="bg- border-y-3 border-emerald-600 shadow-xl p-3 space-y-2 rounded-xl">
+            <div className="bg- border-y-3 border-emerald-600 shadow-xl p-3 space-y-2 rounded-xl hover:scale-102 transition-all duration-200">
                 <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2">
                         <img className='w-15 rounded-4xl' src="https://images.pexels.com/photos/5529606/pexels-photo-5529606.jpeg" alt="" />
@@ -45,7 +45,7 @@ const Reviews = () => {
                 <p>My millet and herbs reached new wholesale buyers. Fees are fair; customer support resolved my listing question quickly.</p>
             </div>
 
-            <div className="bg- border-y-3 border-emerald-600 shadow-xl p-3 space-y-2 rounded-xl">
+            <div className="bg- border-y-3 border-emerald-600 shadow-xl p-3 space-y-2 rounded-xl hover:scale-102 transition-all duration-200">
                 <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2">
                         <img className='w-15 rounded-4xl' src="https://images.pexels.com/photos/4199043/pexels-photo-4199043.jpeg" alt="" />
