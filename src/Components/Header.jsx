@@ -24,12 +24,12 @@ const Header = () => {
       : 
       <>
       <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/'>Home</NavLink></li>
-      <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/products'>All Crops</NavLink></li>
+      <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/allcrops'>All Crops</NavLink></li>
       </>
     }
     </>
     return (
-        <div className="lg:px-12 mx-auto navbar shadow-sm shadow-emerald-700">
+        <div className="lg:px-12 mx-auto navbar shadow-sm shadow-emerald-600">
   <div className="navbar-start">
     <div className="dropdown">
        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

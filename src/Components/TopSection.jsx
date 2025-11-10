@@ -15,7 +15,7 @@ const TopSection = ({data}) => {
                            }
                         </div>
                 <div className="text-center">
-                <Link to={'/products'} className='btn mt-8 bg-emerald-600 text-white'>Show All</Link>
+                <Link to={'/products'} className='btn mt-20 bg-emerald-600 text-white'>Show All</Link>
                 </div>
         </div>
     );
