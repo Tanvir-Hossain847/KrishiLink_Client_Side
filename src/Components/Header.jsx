@@ -17,7 +17,7 @@ const Header = () => {
       user ? <>
       <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/'>Home</NavLink></li>
       <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/allcrops'>All Products</NavLink></li>
-      <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/bids'>Add Crops</NavLink></li>
+      <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/addcrops'>Add Crops</NavLink></li>
       <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/bids'>My Posts</NavLink></li>
       <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/profile'>My Interest</NavLink></li>
       </> 
@@ -64,8 +64,8 @@ const Header = () => {
         <Link to={'/profile'} className="rounded-4xl"><img src={user?.photoURL || 'https://images.unsplash.com/photo-1747592771443-e15f155b1faf?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyN3x8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=60&w=500'} className='lg:w-12 lg:h-12 w-10 h-10 rounded-full' title={user.displayName} /></Link>
         <button onClick={handleSignout} className='btn bg-emerald-600 text-white ml-2'>Log Out</button>
         </>) : (<>
-         <NavLink className='btn border-none bg-emerald-600 !text-white mr-1 ' to='/register'>Register</NavLink>
-       <NavLink className='btn bg-emerald-600 border-none mr-1 !text-white' to='/login'>Login</NavLink>
+         <NavLink className='btn border-none bg-emerald-600 text-white mr-1 ' to='/register'>Register</NavLink>
+       <NavLink className='btn bg-emerald-600 border-none mr-1 text-white' to='/login'>Login</NavLink>
         </>)
 
     }

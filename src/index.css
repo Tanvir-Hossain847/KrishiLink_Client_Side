@@ -6,3 +6,7 @@
 .primary{
      font-family: "Inter", sans-serif;
 }
+
+.active{
+     border-bottom: 2px green;
+}

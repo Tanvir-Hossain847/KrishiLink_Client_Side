@@ -9,6 +9,8 @@ import BIds from '../Pages/BIds';
 import Profile from '../Pages/Profile';
 import ErrorPage from '../Pages/ErrorPage';
 import SingleCropDetail from '../Pages/SingleCropDetail';
+import AddCrop from '../Pages/AddCrop';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 export const router = createBrowserRouter([
   {
@@ -32,12 +34,24 @@ export const router = createBrowserRouter([
           element: <SingleCropDetail></SingleCropDetail>
         },
         {
+          path: '/addcrops',
+          element:(
+            <PrivateRoute>
+              <AddCrop></AddCrop>
+            </PrivateRoute>
+          )
+        },
+        {
           path: '/bids',
           element: <BIds></BIds>
         },
         {
           path: '/profile',
-          element: <Profile></Profile>
+          element: (
+          <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
+          )
         },
         {
           path:'/register',

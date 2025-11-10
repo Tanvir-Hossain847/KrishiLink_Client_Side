@@ -69,7 +69,7 @@ const Login = () => {
       <div className="">
         <div><title>KrishiLink Log in</title></div>
 {
-  loading ? (<Loader></Loader>) : (<div className=" lg:py-40 py-20  min-h-screen">
+  loading ? (<Loader></Loader>) : (<div className=" lg:py-30 py-20  min-h-screen">
   <div className=" flex-col flex justify-center items-center ">
     <div className="text-center">
       <h1 className="text-5xl font-bold text-emerald-700">Login now!</h1>
