@@ -5,7 +5,6 @@ import TopSection from '../Components/TopSection';
 import { useLoaderData } from 'react-router';
 import HowItWorkd from '../Components/HowItWorkd';
 import KrishiNews from '../Components/KrishiNews';
-import CallToAction from '../Components/CallToAction';
 import PartnerSlider from '../Components/PartnerSlider';
 
 
