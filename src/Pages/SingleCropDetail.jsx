@@ -6,7 +6,6 @@ import { useParams } from 'react-router';
 
 const SingleCropDetail = () => {
 
-    const {user} = use(AuthContext)
     const [cropDetail, setCropdetail] = useState([])
     const [loading, setLoading] = useState(true)
     const {id} = useParams()
