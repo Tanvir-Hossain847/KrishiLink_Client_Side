@@ -16,13 +16,13 @@ const InterestForm = ({cropDetail}) => {
         }
     },[cropDetail,user])
 
-    if(quantity < 1){
-        alert("The Minimum Quantity Must Be 1")
-        return
-    }
     const handleInterest = async(e) => {
         e.preventDefault()
-
+        
+        if(quantity < 1){
+            alert("The Minimum Quantity Must Be 1")
+            return
+        }
 
         const formData = {
             cropId: cropDetail._id,
@@ -93,7 +93,7 @@ const InterestForm = ({cropDetail}) => {
 
                <button className="btn bg-emerald-600 mt-4 text-white">
                 {
-                    loading ? <span class="loading loading-spinner loading-xl"></span> : "Submit"
+                    loading ? <span className="loading loading-spinner loading-xl"></span> : "Submit"
                 }
                 </button>
              </fieldset>

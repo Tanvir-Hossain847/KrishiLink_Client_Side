@@ -12,6 +12,7 @@ import SingleCropDetail from '../Pages/SingleCropDetail';
 import AddCrop from '../Pages/AddCrop';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import MyPosts from '../Pages/MyPosts';
+import MyInterests from '../Pages/MyInterests';
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,14 @@ export const router = createBrowserRouter([
           element: (
             <PrivateRoute>
               <MyPosts></MyPosts>
+            </PrivateRoute>
+          )
+        },
+        {
+          path: '/myinterests',
+          element: (
+            <PrivateRoute>
+              <MyInterests></MyInterests>
             </PrivateRoute>
           )
         },
