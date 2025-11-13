@@ -10,9 +10,10 @@ const CropDetail = ({cropDetail}) => {
     
     return (
         <div className="">
+        <div className="">
         <div className='flex my-20 w-11/12 mx-auto'>
             <div className="mx-auto">
-                <img className='w-125 h-115 rounded-xl' src={cropDetail.image} alt="" />
+                <img className='w-125 h-115 rounded-xl object-cover' src={cropDetail.image} alt="" />
             </div>
             <div className="space-y-2 mx-auto w-3/6">
                 <h1 className='text-6xl primary font-bold'>{cropDetail.name}</h1>
@@ -40,6 +41,35 @@ const CropDetail = ({cropDetail}) => {
                 </>
             ) : <p className='text-red-500 font-bold text-center primary my-5'>You Can't Send Interest On Your Own Crops</p>
         }
+        </div>
+        <div className="">
+            {
+                user?.email !== cropDetail?.owner?.ownerEmail ? (
+                    <>
+                    <div className="overflow-x-auto">
+  <table className="table">
+    {/* head */}
+    <thead>
+      <tr>
+        <th>
+         
+        </th>
+        <th>Name</th>
+        <th>Job</th>
+        <th>Favorite Color</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+             
+    </tbody>
+  </table>
+</div>
+                    </>
+                ) :
+                <p className='text-red-500 font-bold text-center primary my-5'>You Can't Send Interest On Your Own Crops</p>
+            } 
+        </div>
         </div>
     );
 };

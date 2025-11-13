@@ -29,7 +29,6 @@ export const router = createBrowserRouter([
         {
           path: '/allcrops',
           element: <AllProducts></AllProducts>,
-          loader: () => fetch('http://localhost:3000/myproducts')
         },
         {
           path: '/allcrops/:id',

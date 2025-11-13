@@ -1,36 +1,57 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 
-const InterestsInfo = ({interest}) => {
+const InterestsInfo = ({interest, onDelete}) => {
     const {name, owner, interests, image, unit} = interest
     const ownerEmail = owner.ownerEmail
 
+
+    const handleDelete = (interestId) => {
+      Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to undo this action!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (!result.isConfirmed) return;
+
+
+      fetch('http://localhost:3000/interests',{
+        method: "DELETE",
+        headers: {
+          "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({interestId})
+      }) 
+      .then(res => res.json())
+      .then(data => {
+        if(data.error){
+          Swal.fire({ icon: 'error', title: 'Error', text: data.error });
+        }else{
+          Swal.fire({
+              icon: 'success',
+              title: 'Deleted!',
+              text: 'Interest deleted successfully.',
+              timer: 2000,
+              showConfirmButton: false
+            });
+            if (onDelete) onDelete(interestId)
+        }
+      })
+    });
+  };
+
     return (
-        <div>
-            <div className="my-10">
-                <h1 className='text-center font-bold text-3xl'>My Interests</h1>
-                </div>
-            <div className="overflow-x-auto min-h-screen my-5">
-  <table className="table">
-    {/* head */}
-    <thead>
-      <tr>
-        <th>
-          
-        </th>
-        <th>Crop</th>
-        <th className='text-center'>Quantity</th>
-        <th className='text-center'>Message</th>
-        <th className='text-center'>Status</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
+        <>          
         {
             interests.map((i, index) => (
       <tr key={index}>
-        <th>
-          
-        </th>
+        <td>
+            
+        </td>
         <td>
           <div className="flex items-center gap-3">
             <div className="avatar">
@@ -55,17 +76,13 @@ const InterestsInfo = ({interest}) => {
         <td className='text-center'>
             <p className='badge bg-gray-600 text-white'>{i.status}</p>
         </td>
-        {/* <th>
-          <button className="btn btn-ghost btn-xs">details</button>
-        </th> */}
+        <td>
+          <button onClick={() => handleDelete(i._id)} className='border-3 font-bold border-red-500 px-3 py-1 rounded-lg text-red-500 text-xs hover:scale-110 hover:text-white hover:bg-red-500 transition-all duration-200'>X</button>
+        </td>
       </tr>
             ))
         }
-      {/* row 1 */}
-    </tbody>
-  </table>
-</div>
-        </div>
+        </>
     );
 };
 

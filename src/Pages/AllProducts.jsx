@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import SingleCards from '../Components/SingleCards';
 import { FaSearch } from 'react-icons/fa';
@@ -8,10 +8,19 @@ import Spinner from '../Components/Spinner';
 
 const AllProducts = () => {
 
-    const data = useLoaderData()
+    const [data, setData] = useState([])
+    const [loading, setLoading] = useState(true)
     const [searchData, setSearchData] = useState('')
-    const {loading} = use(AuthContext)
     const [searchLoading,  setSearchLoading] = useState(false)
+
+    useEffect(() => {
+        fetch('http://localhost:3000/myproducts')
+        .then(res => res.json())
+        .then(data => {
+            setData(data)
+            setLoading(false)
+        })
+    },[])
 
     const filteredData = data.filter(product => product.name.toLowerCase().includes(searchData.toLowerCase()))
     
@@ -41,12 +50,12 @@ const AllProducts = () => {
                 </div>
             </div>
         {
-            searchLoading ? <Spinner></Spinner> :
+            loading ? <Spinner></Spinner> :
         <div className="w-11/12 mx-auto space-y-6 py-6">
             <h1 className='font-bold text-xl'>Total {filteredData.length} Produce Found</h1>
         <div >
             {
-                loading ? <Spinner></Spinner> :
+                searchLoading ? <Spinner></Spinner> :
                 filteredData.length > 0 ?
                 <div className="grid grid-cols-3 gap-5 pb-10 mx-auto">
                     {

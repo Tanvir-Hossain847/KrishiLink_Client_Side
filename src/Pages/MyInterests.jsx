@@ -21,17 +21,46 @@ const MyInterests = () => {
         })
     },[user])
 
+    const handleDelete = (interestId) => {
+      setInterestsData(prev => prev.map(crop => ({
+        ...crop,
+        interests: crop.interests.filter(i => i._id !== interestId)
+      })))
+    }
+
     return (
-        <div>
+        <div className='min-h-screen my-20'>
             {
                loading ? <Spinner></Spinner>
                :
+                <div className="overflow-x-auto">
+  <table className="table">
+    <thead>
+      <tr>
+        <th>
+          
+        </th>
+        <th>Crop</th>
+        <th className='text-center'>Quantity</th>
+        <th className='text-center'>Message</th>
+        <th className='text-center'>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        
+        {
                interestsData.map(interest => <InterestsInfo 
                 key={interest._id} 
                 interest={interest}
+                onDelete={handleDelete}
                 >
-
                 </InterestsInfo>)
+        }
+        
+    </tbody>
+  </table>
+</div>
             }
         </div>
     );

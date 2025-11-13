@@ -2,26 +2,34 @@ import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 
 const InterestForm = ({cropDetail}) => {
-
+    
     const {user} =use(AuthContext)
     const [quantity, setQuantity] = useState(1)
     const [alreadyInterested, setAlreadyInterested] = useState(false)
     const [loading, setLoading] = useState(false)
-
+    
     const totalPrice = quantity * cropDetail.pricePerUnit
-
+    
     useEffect(() => {
         if(cropDetail?.interests?.some(r => r.userEmail === user?.email)){
             setAlreadyInterested(true)
         }
     },[cropDetail,user])
-
+    
     const handleInterest = async(e) => {
         e.preventDefault()
+        
         
         if(quantity < 1){
             alert("The Minimum Quantity Must Be 1")
             return
+        }
+        
+        if(alreadyInterested){
+            return (
+                // <p className='text-center mt-5 text-red-500 font-bold primary'>You Have Already Send An Interest For This Crop</p>
+                alert("You Have Already Placed Interest")
+            )
         }
 
         const formData = {
@@ -51,11 +59,6 @@ const InterestForm = ({cropDetail}) => {
         })
 
 
-        if(alreadyInterested){
-            return (
-                <p className='text-center mt-5 text-red-500 font-bold primary'>You Have Already Send An Interest For This Crop</p>
-            )
-        }
         
     }
 
@@ -91,7 +94,8 @@ const InterestForm = ({cropDetail}) => {
                 Total Price: {isNaN(totalPrice)? 0 : totalPrice} TK
                </p>
 
-               <button className="btn bg-emerald-600 mt-4 text-white">
+               <button 
+               className="btn bg-emerald-600 mt-4 text-white">
                 {
                     loading ? <span className="loading loading-spinner loading-xl"></span> : "Submit"
                 }
