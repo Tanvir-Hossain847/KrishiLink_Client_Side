@@ -39,11 +39,11 @@ const CropDetail = ({cropDetail}) => {
     return (
         <div className="">
         <div className="">
-        <div className='flex my-20 w-11/12 mx-auto'>
+        <div className='md:flex my-20 w-11/12 mx-auto'>
             <div className="mx-auto">
-                <img className='w-125 h-115 rounded-xl object-cover' src={cropDetail.image} alt="" />
+                <img className='md:w-125 md:h-115 w-11/12 mx-auto rounded-xl object-cover' src={cropDetail.image} alt="" />
             </div>
-            <div className="space-y-2 mx-auto w-3/6">
+            <div className="space-y-2 mx-auto md:w-3/6 w-11/12 mt-2">
                 <h1 className='text-6xl primary font-bold'>{cropDetail.name}</h1>
                 <h1 className='badge bg-emerald-600 text-lg text-white'>{cropDetail.type}</h1>
                 <p className='primary text-lg font-bold'>Price Per Unit: {cropDetail.pricePerUnit}</p>
@@ -56,7 +56,7 @@ const CropDetail = ({cropDetail}) => {
         {
             user?.email !== cropDetail?.owner?.ownerEmail ? (
                 <>
-                <div className="w-11/12 mx-auto flex justify-around">
+                <div className="w-11/12 mx-auto md:flex justify-around">
                     <div className=" space-y-3">
                        <h1 className='pt-10 text-4xl font-bold'>Interested In Buying?</h1>
                        <div className="space-y-1">

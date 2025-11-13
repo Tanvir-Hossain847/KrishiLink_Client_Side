@@ -4,7 +4,7 @@ import { FaStar, FaStarHalf } from 'react-icons/fa';
 const Reviews = () => {
     return (
         <div className='w-11/12 mx-auto'>
-            <div className=" grid grid-cols-3 gap-5 p-">
+            <div className=" grid lg:grid-cols-3 grid-cols-1 gap-5 p-">
             <div className="bg- border-y-3 border-emerald-600 shadow-xl p-3 space-y-2 rounded-xl hover:scale-102 transition-all duration-200">
                 <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2 space-y-1">

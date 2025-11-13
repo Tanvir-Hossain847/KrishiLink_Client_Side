@@ -26,7 +26,7 @@ const Slider = () => {
           clickable: true,
         }}
         modules={[EffectFade, Navigation, Pagination, Autoplay]}
-        className="mySwiper w-150 rounded-4xl"
+        className="mySwiper lg:w-150 md:120 rounded-4xl"
       >
         <SwiperSlide>
           <img src="https://images.pexels.com/photos/8939267/pexels-photo-8939267.jpeg" />

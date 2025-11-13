@@ -29,17 +29,14 @@ const MyInterests = () => {
     }
 
     return (
-        <div className='min-h-screen my-20'>
+        <div className='min-h-screen my-20 w-11/12 mx-auto'>
             {
                loading ? <Spinner></Spinner>
                :
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto w-full">
   <table className="table">
     <thead>
       <tr>
-        <th>
-          
-        </th>
         <th>Crop</th>
         <th className='text-center'>Quantity</th>
         <th className='text-center'>Message</th>

@@ -4,6 +4,7 @@ import { Link, Navigate, useNavigate } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { LuEyeClosed } from 'react-icons/lu';
+import Swal from 'sweetalert2';
 
 const Registration = () => {
      const {createUser, setUser, signInWithGoogle, updateUserProfile} = use(AuthContext);
@@ -27,7 +28,11 @@ const navigate = useNavigate();
 
          if(!passwordPattern.test(password)){
           setError('Passowerd must be contain at least 6 characters long, include one uppercase, one lowercase and special character')
-          //toast.error('Passowerd must be contain at least 6 characters long, include one uppercase, one lowercase and special character')
+          Swal.fire({
+            title: "Error",
+            text: 'Passowerd must be contain at least 6 characters long, include one uppercase, one lowercase and special character',
+            icon: 'warning'
+          })
           return
          }
 
@@ -43,7 +48,11 @@ const navigate = useNavigate();
          setSuccess(false);
 
          if(!terms){
-          //toast.error('Please accept our terms and condition.');
+          Swal.fire({
+            title: 'Terms And Conditions',
+            text: "Please accept our terms and condition.",
+            icon:'info'
+          })
           return;
          }
 
@@ -59,7 +68,10 @@ const navigate = useNavigate();
           setSuccess(true);
           setError('');
           e.target.reset();
-          //toast.success("Sign up successfull")
+          Swal.fire({
+            title:"Sign-Up Succesfull",
+            icon: 'success'
+          })
            navigate(from, {replace:true});
         });
       })
@@ -77,14 +89,20 @@ const navigate = useNavigate();
         const handleGoogleSignIn = () =>{
          signInWithGoogle()
          .then(() => {
-          //toast.success("Sign up successfull")
+            Swal.fire({
+            title:"Sign-Up Succesfull",
+            icon: 'success'
+          })
             //console.log(result.user);
             navigate(from, {replace:true})
             
          })
          .catch(err => {
             console.log(err);
-            //toast.error(err.message)
+            Swal.fire({
+              title:"Error",
+              icon: 'error'
+            })
          })
     }
     

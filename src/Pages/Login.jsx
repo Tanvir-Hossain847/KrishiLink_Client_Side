@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import Spinner from "../Components/Spinner";
+import Swal from "sweetalert2";
 
 
 
@@ -30,10 +31,16 @@ const Login = () => {
       .then(() =>{
         //console.log(result);
         navigate(from, {replace:true})
-        //toast.success('Logged in successfully! 🎉');
+        Swal.fire({
+          title: "Login Succesfull",
+          icon: "success"
+        })
       })
       .catch(err => {
-        //toast.error(err.message);
+        Swal.fire({
+          title: "Error",
+          icon: "error"
+        })
         setErr(err)
       })
       
@@ -43,10 +50,16 @@ const Login = () => {
          .then(result => {
             console.log(result.user);
             navigate(from, {replace:true})
-           //toast.success('Logged in successfully! 🎉');
+            Swal.fire({
+          title: "Login Succesfull",
+          icon: "success"
+        })
          })
          .catch(err => {
-            // toast.error(err.message);
+          Swal.fire({
+          title: "Error",
+          icon: "error"
+        })
             console.log(err);
             
             

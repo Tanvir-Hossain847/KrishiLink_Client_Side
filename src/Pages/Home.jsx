@@ -13,7 +13,7 @@ const Home = () => {
     return (
         <div>
                   <div className='min-h-screen'>
-                <header className='pb-10 pt-25'>
+                <header className='pb-10 lg:pt-25 pt-15'>
                     <HeroBanner></HeroBanner>
                 </header>
 

@@ -66,7 +66,7 @@ const InterestForm = ({cropDetail}) => {
     return (
         <div>
             <form onSubmit={handleInterest}>
-            <fieldset className="fieldset border-y-5 border-emerald-600 rounded-xl w-lg p-4 shadow-2xl mb-20 mt-10 mx-auto">
+            <fieldset className="fieldset border-y-5 border-emerald-600 rounded-xl w-xs md:w-lg p-4 shadow-2xl mb-20 mt-10 mx-auto">
              
              <h1 className='text-center font-bold text-3xl'>Interest Form</h1>
 

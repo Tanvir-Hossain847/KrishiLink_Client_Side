@@ -1,5 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router';
+import React, { useEffect, useState } from 'react';
 import SingleCards from '../Components/SingleCards';
 import { FaSearch } from 'react-icons/fa';
 import Error from '../Components/Error';
@@ -36,8 +35,8 @@ const AllProducts = () => {
 
     return (
         <div className="">
-            <div className="pt-10 flex w-11/12 mx-auto items-center justify-between">
-                <h1 className='font-bold text-4xl primary text-emerald-600'>All Produce Section</h1>
+            <div className="pt-10 md:flex space-y-2 w-11/12 mx-auto items-center justify-between">
+                <h1 className='font-bold sm:text-4xl text-3xl primary text-emerald-600'>All Produce Section</h1>
                 <div className="flex items-center gap-2">
                     <FaSearch className='text-2xl text-emerald-600'></FaSearch>
                 <input 
@@ -57,7 +56,7 @@ const AllProducts = () => {
             {
                 searchLoading ? <Spinner></Spinner> :
                 filteredData.length > 0 ?
-                <div className="grid grid-cols-3 gap-5 pb-10 mx-auto">
+                <div className="grid lg:grid-cols-3 grid-cols-1 gap-5 pb-10 mx-auto">
                     {
                 filteredData.map(product => <SingleCards key={product._id} product={product}></SingleCards>)
                     }

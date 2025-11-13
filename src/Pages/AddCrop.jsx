@@ -1,6 +1,7 @@
 import React, { use } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import { useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 const AddCrop = () => {
     const navigate = useNavigate()
@@ -36,6 +37,12 @@ const AddCrop = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data);
+            Swal.fire({
+                title:"Added",
+                text: "Crop Added Succesfully",
+                icon:"success"
+            }
+            )
             navigate('/myposts')
         })
         .catch(err => {
@@ -49,7 +56,7 @@ const AddCrop = () => {
     return (
         <div>
             <form onSubmit={handlePost}>
-            <fieldset className="fieldset my-20 border-y-5 border-emerald-600 rounded-xl w-lg p-4 shadow-xl mx-auto">
+            <fieldset className="fieldset my-20 border-y-5 border-emerald-600 rounded-xl w-xs px-5 md:w-lg p-4 shadow-xl mx-auto">
              
              <h1 className='text-center font-bold text-3xl'>Add Crops</h1>
 
