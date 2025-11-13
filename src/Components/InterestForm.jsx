@@ -40,7 +40,7 @@ const InterestForm = ({cropDetail}) => {
             message: e.target.message.value
         }
 
-        console.log(formData);
+        // console.log(formData);
 
         setLoading(true)
         fetch('http://localhost:3000/interests', {
@@ -50,7 +50,7 @@ const InterestForm = ({cropDetail}) => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             setAlreadyInterested(true)
             setLoading(false)
         })

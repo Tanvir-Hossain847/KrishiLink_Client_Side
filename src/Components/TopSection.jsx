@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import SingleCards from './SingleCards';
 
 const TopSection = ({data}) => {
-    console.log(data)
+    // console.log(data)
     
     const letestSix = data.slice(-6).reverse()
 

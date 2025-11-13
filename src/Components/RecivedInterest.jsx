@@ -2,7 +2,7 @@ import React from 'react';
 import { TiTick } from "react-icons/ti";
 
 const RecivedInterest = ({interest}) => {
-    console.log(interest);
+    // console.log(interest);
     const {message, quantity, userEmail, userName,status} = interest
     // if (!interest) {
     //     return (
