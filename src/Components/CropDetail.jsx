@@ -1,12 +1,36 @@
-import React, { use } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import Spinner from './Spinner';
 import InterestForm from './InterestForm';
 import { AuthContext } from '../Context/AuthContext';
+import RecivedInterest from './RecivedInterest';
 
 const CropDetail = ({cropDetail}) => {
     const {user} = use(AuthContext)
+    const [postData, setPostData] = useState([])
+    const [posts , setPost] = useState([])
+    
+    useEffect(() => {
+        fetch(`http://localhost:3000/myposts/?email=${user.email}`)
+        .then(res => res.json())
+        .then(data => {
+            setPostData(data)
+        })
+    }, [user.email])
+
+    useEffect(() =>{
+        if(postData.length > 0){
+            setPost(postData)
+        }
+    },[postData, setPost])
+    
+    
+    // const {interests} = post
+    // console.log(interests);
+    
+
     if(!cropDetail) return <Spinner></Spinner>;
-    console.log(cropDetail);
+    // console.log(cropDetail);
+
     
     return (
         <div className="">
@@ -44,9 +68,10 @@ const CropDetail = ({cropDetail}) => {
         </div>
         <div className="">
             {
-                user?.email !== cropDetail?.owner?.ownerEmail ? (
+                user?.email === cropDetail?.owner?.ownerEmail ? (
                     <>
-                    <div className="overflow-x-auto">
+                    <div className="overflow-x-auto my-10">
+                        <h1 className='text-emerald-600 primary font-bold text-3xl text-center my-3'>Recived Interest Section</h1>
   <table className="table">
     {/* head */}
     <thead>
@@ -55,13 +80,20 @@ const CropDetail = ({cropDetail}) => {
          
         </th>
         <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
+        <th className='text-center'>Quantity</th>
+        <th className='text-center'>Message</th>
+        <th className='text-center'>Status</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-             
+        {
+            posts.map(post =>
+            (post.interests || []).map(interest =>(
+                <RecivedInterest key={interest._id} interest={interest}></RecivedInterest>
+            ))
+            )
+        }
     </tbody>
   </table>
 </div>

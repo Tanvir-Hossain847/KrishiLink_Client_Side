@@ -13,6 +13,7 @@ import AddCrop from '../Pages/AddCrop';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import MyPosts from '../Pages/MyPosts';
 import MyInterests from '../Pages/MyInterests';
+import UpdateProfile from '../Components/UpdateProfile';
 
 export const router = createBrowserRouter([
   {
@@ -63,15 +64,19 @@ export const router = createBrowserRouter([
           )
         },
         {
-          path: '/bids',
-          element: <BIds></BIds>
-        },
-        {
           path: '/profile',
           element: (
           <PrivateRoute>
             <Profile></Profile>
           </PrivateRoute>
+          )
+        },
+        {
+          path: '/editprofie',
+          element: (
+            <PrivateRoute>
+              <UpdateProfile></UpdateProfile>
+            </PrivateRoute>
           )
         },
         {

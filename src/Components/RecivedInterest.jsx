@@ -1,40 +1,39 @@
 import React from 'react';
+import { TiTick } from "react-icons/ti";
 
-const RecivedInterest = () => {
+const RecivedInterest = ({interest}) => {
+    console.log(interest);
+    const {message, quantity, userEmail, userName,status} = interest
     return (
-        <div>
+        <>
             <tr>
         <td>
             
         </td>
         <td>
           <div className="flex items-center gap-3">
-            <div className="avatar">
-              <div className="mask mask-squircle h-12 w-12">
-                <img
-                  alt="Avatar Tailwind CSS Component" />
-              </div>
-            </div>
+          
             <div>
-              <div className="font-bold">{}</div>
-              <div className="text-sm opacity-50">{}</div>
+              <div className="font-bold">{userName}</div>
+              <div className="text-sm opacity-50">{userEmail}</div>
             </div>
           </div>
         </td>
         <td className='text-center'>
-          <span className="badge text-white bg-emerald-600 badge-lg">{}{}</span>
+          <span className="badge text-white bg-emerald-600 badge-lg">{quantity}kg</span>
         </td>
         <td className='text-center'>
-            <p className='font-bold'>{}</p>
+            <p className='font-bold'>{message}</p>
         </td>
         <td className='text-center'>
-            <p className='badge bg-gray-600 text-white'>{}</p>
+            <p className='badge bg-gray-600 text-white'>{status}</p>
         </td>
-        <td>
+        <td className='flex items-center gap-2'>
+          <button className='border-3 font-bold border-emerald-600 px-3 py-1.5 rounded-lg text-emerald-600 text-sm hover:scale-110 hover:text-white hover:bg-emerald-600 transition-all duration-200'><TiTick></TiTick></button>
           <button className='border-3 font-bold border-red-500 px-3 py-1 rounded-lg text-red-500 text-xs hover:scale-110 hover:text-white hover:bg-red-500 transition-all duration-200'>X</button>
         </td>
       </tr>
-        </div>
+        </>
     );
 };
 
