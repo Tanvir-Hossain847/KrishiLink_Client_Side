@@ -11,7 +11,7 @@ const SingleCropDetail = () => {
     const {id} = useParams()
 
     useEffect(() => {
-        fetch(`http://localhost:3000/myproducts/${id}`)
+        fetch(`https://krishilink-server-side-beta.vercel.app/myproducts/${id}`)
         .then(res => res.json())
         .then(data => {
             // console.log(data);

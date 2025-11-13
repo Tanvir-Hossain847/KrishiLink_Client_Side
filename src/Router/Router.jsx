@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
             index: true,
             path:'/',
             element:<Home></Home>,
-            loader: () => fetch('http://localhost:3000/myproducts')
+            loader: () => fetch('https://krishilink-server-side-beta.vercel.app/myproducts')
         },
         {
           path: '/allcrops',

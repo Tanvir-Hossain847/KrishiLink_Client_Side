@@ -10,7 +10,7 @@ const CropDetail = ({cropDetail}) => {
     const [posts , setPost] = useState([])
     
     useEffect(() => {
-        fetch(`http://localhost:3000/myposts/?email=${user.email}`)
+        fetch(`https://krishilink-server-side-beta.vercel.app/myposts/?email=${user.email}`)
         .then(res => res.json())
         .then(data => {
             setPostData(data)
