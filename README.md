@@ -1,16 +1,49 @@
-# React + Vite
+# KrishiLink
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+KrishiLink is a modern web application designed to connect crop owners with potential buyers.  
+It allows users to post agricultural products, express interest in available crops, and manage listings efficiently.  
+The project combines a responsive frontend built with React and Tailwind CSS with a robust backend using Node.js, Express, and MongoDB Atlas.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Description
 
-## React Compiler
+KrishiLink aims to make crop trading easier and more transparent.  
+Farmers can list their products, and interested buyers can send inquiries directly.  
+The app uses Firebase for authentication, MongoDB for data storage, and Vercel for deployment, ensuring a smooth, secure, and scalable experience.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Frontend
+- React 19  
+- Tailwind CSS 4  
+- DaisyUI  
+- Styled Components  
+- Firebase  
+- React Router 7  
+- Swiper  
+- SweetAlert2  
+- React Icons  
+- React Spinners  
+
+### Backend
+- Node.js  
+- Express.js  
+- MongoDB Atlas  
+- Vercel (Serverless Deployment)
+
+### Development Tools
+- Vite  
+- ESLint  
+- Storybook  
+- Prop-Types  
+- Globals  
+- React Refresh  
+
+---
+
+## Live Link
+- https://assignment-10-8a9e3.web.app/
+
