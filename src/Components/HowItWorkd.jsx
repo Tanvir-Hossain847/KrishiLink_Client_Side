@@ -32,7 +32,7 @@ const HowItWorkd = () => {
 
 
     return (
-        <div className='grid grid-cols-4 gap-5 w-11/12 mx-auto text-center pt-10'>
+        <div className='grid lg:grid-cols-4 grid-cols-1 gap-5 w-11/12 mx-auto text-center pt-10'>
             {
                 steps.map(step => <HIWCard key={step.id} step={step}></HIWCard>)
             }

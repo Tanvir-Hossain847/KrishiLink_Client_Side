@@ -4,6 +4,15 @@ import { TiTick } from "react-icons/ti";
 const RecivedInterest = ({interest}) => {
     console.log(interest);
     const {message, quantity, userEmail, userName,status} = interest
+    // if (!interest) {
+    //     return (
+    //         <tr>
+    //             <td colSpan={6} className="text-center text-gray-500">
+    //                 No Interest For This Product Yet
+    //             </td>
+    //         </tr>
+    //     );
+    // }
     return (
         <>
             <tr>

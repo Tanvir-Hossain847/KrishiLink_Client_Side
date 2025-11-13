@@ -9,13 +9,13 @@ const TopSection = ({data}) => {
 
     return (
         <div className='mx-auto'>
-            <div className="w-11/12 mx-auto grid grid-cols-3 gap-10">
+            <div className="w-11/12 mx-auto grid lg:grid-cols-3 grid-cols-1 gap-10">
                            {
                             letestSix.map(product => <SingleCards product={product}></SingleCards>)
                            }
                         </div>
                 <div className="text-center">
-                <Link to={'/products'} className='btn mt-20 bg-emerald-600 text-white'>Show All</Link>
+                <Link to={'/allcrops'} className='btn mt-20 bg-emerald-600 text-white'>Show All</Link>
                 </div>
         </div>
     );

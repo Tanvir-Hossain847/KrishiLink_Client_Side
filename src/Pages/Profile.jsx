@@ -13,7 +13,7 @@ const Profile = () => {
             </div>
             <div className="space-y-2">
                 <h1 className='primary text-2xl text-emerald-700 font-bold'>{user.displayName}</h1>
-                <Link to={}>Edit Profile</Link>
+                <Link to={'/editprofile'} className='btn bg-emerald-600 text-white'>Edit Profile</Link>
             </div>
         </div>
     );

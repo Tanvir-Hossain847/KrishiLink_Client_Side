@@ -23,6 +23,10 @@ const CropDetail = ({cropDetail}) => {
         }
     },[postData, setPost])
     
+    const cropInterests = posts
+      .map(post => post?.interests?.filter(i => i.cropId === cropDetail._id))
+      .filter(Boolean)
+      .flat();
     
     // const {interests} = post
     // console.log(interests);
@@ -88,11 +92,24 @@ const CropDetail = ({cropDetail}) => {
     </thead>
     <tbody>
         {
-            posts.map(post =>
-            (post.interests || []).map(interest =>(
-                <RecivedInterest key={interest._id} interest={interest}></RecivedInterest>
-            ))
-            )
+            cropInterests.length > 0 ? (
+      cropInterests.map(interest => (
+        <RecivedInterest key={interest._id} interest={interest} />
+      ))
+    ) : (
+      <tr>
+        <td colSpan={6} className="text-center text-gray-500">
+          No Interest For This Product Yet
+        </td>
+      </tr>
+    )
+            // posts.map(post => 
+            // post?.interests
+            // ?.filter(i => i.cropId === cropDetail._id)
+            // .map(interest => (
+            //     <RecivedInterest key={interest._id} interest={interest}></RecivedInterest>
+            // ))
+            // )
         }
     </tbody>
   </table>

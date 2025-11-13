@@ -39,7 +39,7 @@ const KrishiNews = () => {
     ]
 
     return (
-        <div className='grid grid-cols-3 gap-5 w-11/12 mx-auto'>
+        <div className='grid lg:grid-cols-3 grid-cols-1 gap-5 w-11/12 mx-auto'>
             {
                 news.map(singlenews => <SingleNews key={singlenews.id} singlenews={singlenews}></SingleNews>)
             }

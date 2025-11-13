@@ -4,8 +4,8 @@ import { Link } from 'react-router';
 
 const HeroBanner = () => {
     return (
-        <div className='w-11/12 mx-auto flex justify-between gap-15'>
-            <div className="space-y-4">
+        <div className='w-11/12 mx-auto flex flex-col-reverse lg:flex lg:justify-between lg:gap-15'>
+            <div className="space-y-4 -z-10">
             <h1 className='font-bold primary text-4xl text-emerald-600'>Empowering Farmers, Feeding the Nation</h1>
             <p className='primary text-lg font-bold'>
                 Join a trusted platform where farmers and buyers trade crops directly — no middlemen, no hassle.
