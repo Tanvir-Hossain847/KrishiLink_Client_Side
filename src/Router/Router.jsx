@@ -5,17 +5,19 @@ import Registration from '../Pages/Register';
 import Login from '../Pages/Login';
 import Root from '../Layouts/Root';
 import AllProducts from '../Pages/AllProducts';
-import BIds from '../Pages/BIds';
-import Profile from '../Pages/Profile';
 import ErrorPage from '../Pages/ErrorPage';
 import SingleCropDetail from '../Pages/SingleCropDetail';
 import AddCrop from '../Pages/AddCrop';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import MyPosts from '../Pages/MyPosts';
 import MyInterests from '../Pages/MyInterests';
-import UpdateProfile from '../Components/UpdateProfile';
 import NewsPage from '../Pages/NewsPage';
 import Cart from '../Pages/Cart';
+import DashboardLayout from '../Layouts/DashboardLayout';
+import Profile from '../Pages/Profile';
+import Overview from '../Pages/Overview';
+import AboutUs from '../Pages/AboutUs';
+import ContactUs from '../Pages/ContactUs';
 
 export const router = createBrowserRouter([
   {
@@ -48,44 +50,12 @@ export const router = createBrowserRouter([
           element: <Cart></Cart>
         },
         {
-          path: '/addcrops',
-          element:(
-            <PrivateRoute>
-              <AddCrop></AddCrop>
-            </PrivateRoute>
-          )
+          path: '/about',
+          element: <AboutUs></AboutUs>
         },
         {
-          path: '/myposts',
-          element: (
-            <PrivateRoute>
-              <MyPosts></MyPosts>
-            </PrivateRoute>
-          )
-        },
-        {
-          path: '/myinterests',
-          element: (
-            <PrivateRoute>
-              <MyInterests></MyInterests>
-            </PrivateRoute>
-          )
-        },
-        {
-          path: '/profile',
-          element: (
-          <PrivateRoute>
-            <Profile></Profile>
-          </PrivateRoute>
-          )
-        },
-        {
-          path: '/editprofile',
-          element: (
-            <PrivateRoute>
-              <UpdateProfile></UpdateProfile>
-            </PrivateRoute>
-          )
+          path: '/contact',
+          element: <ContactUs></ContactUs>
         },
         {
           path:'/register',
@@ -95,6 +65,40 @@ export const router = createBrowserRouter([
           path:'/login' ,
          element:<Login></Login>
         },
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Overview></Overview>
+      },
+      {
+        path: 'overview',
+        element: <Overview></Overview>
+      },
+      {
+        path: 'profile',
+        element: <Profile></Profile>
+      },
+      {
+        path: 'add-crop',
+        element: <AddCrop></AddCrop>
+      },
+      {
+        path: 'my-posts',
+        element: <MyPosts></MyPosts>
+      },
+      {
+        path: 'my-interests',
+        element: <MyInterests></MyInterests>
+      }
     ]
   },
   {

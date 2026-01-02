@@ -1,8 +1,10 @@
 import Spinner from './Spinner';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router';
 
 const CropDetail = ({cropDetail}) => {
     const [quantity, setQuantity] = useState(1);
+    const [relatedProducts, setRelatedProducts] = useState([]);
     
     // const {interests} = post
     // console.log(interests);
@@ -10,6 +12,18 @@ const CropDetail = ({cropDetail}) => {
 
     if(!cropDetail) return <Spinner></Spinner>;
     // console.log(cropDetail);
+
+    useEffect(() => {
+        // Fetch related products of same type
+        fetch('http://localhost:3000/myproducts')
+            .then(res => res.json())
+            .then(data => {
+                const related = data.filter(product => 
+                    product.type === cropDetail.type && product._id !== cropDetail._id
+                ).slice(0, 4);
+                setRelatedProducts(related);
+            });
+    }, [cropDetail]);
 
 
     const handleAddToCart = async () => {
@@ -59,6 +73,33 @@ const CropDetail = ({cropDetail}) => {
     const calculateTotalPrice = () => {
         return cropDetail.pricePerUnit * quantity;
     };
+
+    const transportSteps = [
+        {
+            id: 1,
+            icon: "📦",
+            title: "Order Confirmation",
+            description: "Your order is confirmed and the farmer is notified"
+        },
+        {
+            id: 2,
+            icon: "🌾",
+            title: "Harvesting & Packing",
+            description: "Fresh produce is harvested and carefully packed"
+        },
+        {
+            id: 3,
+            icon: "🚚",
+            title: "Shipping",
+            description: "Your order is shipped via our trusted delivery partners"
+        },
+        {
+            id: 4,
+            icon: "✅",
+            title: "Delivery",
+            description: "Fresh produce delivered to your doorstep"
+        }
+    ];
 
     
     return (
@@ -132,6 +173,58 @@ const CropDetail = ({cropDetail}) => {
                 </div>
             </div>
         </div>
+
+        {/* Transportation Procedure Section */}
+        <div className="w-11/12 mx-auto my-20">
+            <h2 className="text-3xl font-bold text-black text-center mb-10 primary">Transportation Procedure</h2>
+            <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6">
+                {transportSteps.map((step, index) => (
+                    <div key={step.id} className="relative">
+                        <div className="bg-white rounded-2xl p-6 shadow-xl border-y-2 border-emerald-600 hover:scale-103 transition-all duration-200 text-center">
+                            <div className="text-5xl mb-4">{step.icon}</div>
+                            <h3 className="text-lg font-bold primary text-gray-800 mb-2">{step.title}</h3>
+                            <p className="text-gray-600 primary text-sm">{step.description}</p>
+                        </div>
+                        {index < transportSteps.length - 1 && (
+                            <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                                <div className="w-6 h-0.5 bg-emerald-600"></div>
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
+        </div>
+
+        {/* Related Products Section */}
+        {relatedProducts.length > 0 && (
+            <div className="w-11/12 mx-auto my-20">
+                <h2 className="text-3xl font-bold text-black text-center mb-10 primary">Related Products</h2>
+                <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6">
+                    {relatedProducts.map(product => (
+                        <div key={product._id} className="bg-white rounded-2xl shadow-xl border-y-2 border-emerald-600 hover:scale-103 transition-all duration-200 overflow-hidden">
+                            <img 
+                                src={product.image} 
+                                alt={product.name}
+                                className="w-full h-48 object-cover"
+                            />
+                            <div className="p-4 space-y-2">
+                                <h3 className="text-xl font-bold primary text-gray-800">{product.name}</h3>
+                                <span className="badge bg-emerald-600 text-white px-3 py-1 rounded-lg text-sm">{product.type}</span>
+                                <p className="text-emerald-600 font-bold primary">₹{product.pricePerUnit} / {product.unit}</p>
+                                <p className="text-gray-500 text-sm primary">{product.location}</p>
+                                <Link 
+                                    to={`/allcrops/${product._id}`}
+                                    className="block w-full text-center py-2 bg-emerald-600 text-white font-bold rounded-xl hover:bg-emerald-700 transition-all duration-200 mt-3"
+                                >
+                                    View Details
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        )}
+
         </div>
         </div>
     );

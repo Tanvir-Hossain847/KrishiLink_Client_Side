@@ -43,7 +43,7 @@ const AddCrop = () => {
                 icon:"success"
             }
             )
-            navigate('/myposts')
+            navigate('/dashboard/my-posts')
         })
         .catch(err => {
             console.log(err);
