@@ -19,7 +19,7 @@ const Header = () => {
       <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/allcrops'>All Products</NavLink></li>
       <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/addcrops'>Add Crops</NavLink></li>
       <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/myposts'>My Posts</NavLink></li>
-      <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/myinterests'>My Interest</NavLink></li>
+      <li className='text-emerald-600 hover:scale-105 transition-all duration-100'><NavLink to='/cart'>My Cart</NavLink></li>
       </> 
       : 
       <>

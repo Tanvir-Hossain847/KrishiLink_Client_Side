@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router';
+
 
 const SingleNews = ({singlenews}) => {
     return (
@@ -10,8 +12,9 @@ const SingleNews = ({singlenews}) => {
             <h1 className='primary text-3xl font-bold'>{singlenews.title}</h1>
             <h1 className='font-bold primary'>{singlenews.author}</h1>
             <h1 className='font-bold primary'>{singlenews.date}</h1>
-            <p>{singlenews.summery}</p>
-            <p>{singlenews.content}</p>
+            <p>{singlenews.summary}</p>
+            <p className='line-clamp-3'>{singlenews.content}</p>
+            <Link to={`/news/${singlenews.id}`}><button className='btn bg-emerald-600 text-white'>Read More</button></Link>
             </div>
         </div>
     );

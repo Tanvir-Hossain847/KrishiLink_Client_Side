@@ -27,7 +27,7 @@ const AddCrop = () => {
         }
         // console.log(inputData);
 
-        fetch("https://krishilink-server-side-beta.vercel.app/myproducts", {
+        fetch("http://localhost:3000/myproducts", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

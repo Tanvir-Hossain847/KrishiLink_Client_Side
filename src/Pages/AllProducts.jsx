@@ -13,7 +13,7 @@ const AllProducts = () => {
     const [searchLoading,  setSearchLoading] = useState(false)
 
     useEffect(() => {
-        fetch('https://krishilink-server-side-beta.vercel.app/myproducts')
+        fetch('http://localhost:3000/myproducts')
         .then(res => res.json())
         .then(data => {
             setData(data)

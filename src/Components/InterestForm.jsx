@@ -43,7 +43,7 @@ const InterestForm = ({cropDetail}) => {
         // console.log(formData);
 
         setLoading(true)
-        fetch('https://krishilink-server-side-beta.vercel.app/interests', {
+        fetch('http://localhost:3000/interests', {
             method: "POST",
             headers: {"Content-type": "application/json"},
             body: JSON.stringify(formData)

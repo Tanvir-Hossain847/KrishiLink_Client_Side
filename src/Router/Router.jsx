@@ -14,6 +14,8 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import MyPosts from '../Pages/MyPosts';
 import MyInterests from '../Pages/MyInterests';
 import UpdateProfile from '../Components/UpdateProfile';
+import NewsPage from '../Pages/NewsPage';
+import Cart from '../Pages/Cart';
 
 export const router = createBrowserRouter([
   {
@@ -25,7 +27,7 @@ export const router = createBrowserRouter([
             index: true,
             path:'/',
             element:<Home></Home>,
-            loader: () => fetch('https://krishilink-server-side-beta.vercel.app/myproducts')
+            loader: () => fetch('http://localhost:3000/myproducts')
         },
         {
           path: '/allcrops',
@@ -34,10 +36,16 @@ export const router = createBrowserRouter([
         {
           path: '/allcrops/:id',
           element: (
-            <PrivateRoute>
               <SingleCropDetail></SingleCropDetail>
-            </PrivateRoute>
           ) 
+        },
+        {
+          path: '/news/:id',
+          element: <NewsPage></NewsPage>
+        },
+        {
+          path: '/cart',
+          element: <Cart></Cart>
         },
         {
           path: '/addcrops',

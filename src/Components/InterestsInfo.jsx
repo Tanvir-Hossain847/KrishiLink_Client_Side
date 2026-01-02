@@ -20,7 +20,7 @@ const InterestsInfo = ({interest, onDelete}) => {
       if (!result.isConfirmed) return;
 
 
-      fetch('https://krishilink-server-side-beta.vercel.app/interests',{
+      fetch('http://localhost:3000/interests',{
         method: "DELETE",
         headers: {
           "Content-Type" : "application/json"
