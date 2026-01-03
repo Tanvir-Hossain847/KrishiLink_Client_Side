@@ -1,5 +1,6 @@
 import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
+import Swal from 'sweetalert2';
 
 const InterestForm = ({cropDetail}) => {
     
@@ -21,15 +22,21 @@ const InterestForm = ({cropDetail}) => {
         
         
         if(quantity < 1){
-            alert("The Minimum Quantity Must Be 1")
+            Swal.fire({
+                title: 'Error',
+                text: 'The Minimum Quantity Must Be 1',
+                icon: 'error'
+            });
             return
         }
         
         if(alreadyInterested){
-            return (
-                // <p className='text-center mt-5 text-red-500 font-bold primary'>You Have Already Send An Interest For This Crop</p>
-                alert("You Have Already Placed Interest")
-            )
+            Swal.fire({
+                title: 'Already Interested',
+                text: 'You Have Already Placed Interest',
+                icon: 'warning'
+            });
+            return
         }
 
         const formData = {
@@ -53,6 +60,11 @@ const InterestForm = ({cropDetail}) => {
             // console.log(data);
             setAlreadyInterested(true)
             setLoading(false)
+            Swal.fire({
+                title: 'Success',
+                text: 'Interest submitted successfully!',
+                icon: 'success'
+            });
         })
         .catch(err => {
             console.log(err);

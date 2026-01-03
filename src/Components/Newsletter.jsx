@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 
 const Newsletter = () => {
     const [email, setEmail] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert(`Thank you for subscribing with: ${email}`);
+        Swal.fire({
+            title: 'Subscribed!',
+            text: `Thank you for subscribing with: ${email}`,
+            icon: 'success'
+        });
         setEmail('');
     };
 

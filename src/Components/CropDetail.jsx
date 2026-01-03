@@ -1,6 +1,7 @@
 import Spinner from './Spinner';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
+import Swal from 'sweetalert2';
 
 const CropDetail = ({cropDetail}) => {
     const [quantity, setQuantity] = useState(1);
@@ -46,7 +47,11 @@ const CropDetail = ({cropDetail}) => {
       })
       const result = await response.json();
       console.log('Inserted:', result);
-      alert('Item added successfully!');
+      Swal.fire({
+        title: 'Added!',
+        text: 'Item added to cart successfully!',
+        icon: 'success'
+      });
       console.log(cropDetail);
       
     }
