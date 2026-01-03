@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from 'react-icons/fa';
 
 const ContactUs = () => {
     const [formData, setFormData] = useState({
@@ -106,7 +107,7 @@ const ContactUs = () => {
                         <div className="bg-white rounded-2xl p-6 shadow-xl border-y-2 border-emerald-600 hover:scale-102 transition-all duration-200">
                             <div className="flex items-center gap-4">
                                 <div className="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center">
-                                    <span className="text-3xl">📍</span>
+                                    <FaMapMarkerAlt className="text-2xl text-emerald-600" />
                                 </div>
                                 <div>
                                     <h3 className="text-lg font-bold primary text-gray-800">Our Address</h3>
@@ -118,7 +119,7 @@ const ContactUs = () => {
                         <div className="bg-white rounded-2xl p-6 shadow-xl border-y-2 border-emerald-600 hover:scale-102 transition-all duration-200">
                             <div className="flex items-center gap-4">
                                 <div className="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center">
-                                    <span className="text-3xl">📞</span>
+                                    <FaPhone className="text-2xl text-emerald-600" />
                                 </div>
                                 <div>
                                     <h3 className="text-lg font-bold primary text-gray-800">Phone Number</h3>
@@ -130,7 +131,7 @@ const ContactUs = () => {
                         <div className="bg-white rounded-2xl p-6 shadow-xl border-y-2 border-emerald-600 hover:scale-102 transition-all duration-200">
                             <div className="flex items-center gap-4">
                                 <div className="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center">
-                                    <span className="text-3xl">✉️</span>
+                                    <FaEnvelope className="text-2xl text-emerald-600" />
                                 </div>
                                 <div>
                                     <h3 className="text-lg font-bold primary text-gray-800">Email Address</h3>
@@ -142,7 +143,7 @@ const ContactUs = () => {
                         <div className="bg-white rounded-2xl p-6 shadow-xl border-y-2 border-emerald-600 hover:scale-102 transition-all duration-200">
                             <div className="flex items-center gap-4">
                                 <div className="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center">
-                                    <span className="text-3xl">🕐</span>
+                                    <FaClock className="text-2xl text-emerald-600" />
                                 </div>
                                 <div>
                                     <h3 className="text-lg font-bold primary text-gray-800">Working Hours</h3>

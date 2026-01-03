@@ -7,7 +7,7 @@ const Cart = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:3000/myItems')
+        fetch('https://krishi-link-server-side.vercel.app/myItems')
             .then(res => res.json())
             .then(data => {
                 setCartItems(data);
@@ -20,7 +20,7 @@ const Cart = () => {
     };
 
     const handleRemoveItem = async (id) => {
-        const response = await fetch(`http://localhost:3000/myItems/${id}`, {
+        const response = await fetch(`krishi-link-server-side.vercel.app/myItems/${id}`, {
             method: 'DELETE',
         });
         if (response.ok) {

@@ -16,7 +16,7 @@ const CropDetail = ({cropDetail}) => {
 
     useEffect(() => {
         // Fetch related products of same type
-        fetch('http://localhost:3000/myproducts')
+        fetch('https://krishi-link-server-side.vercel.app/myproducts')
             .then(res => res.json())
             .then(data => {
                 const related = data.filter(product => 
@@ -38,8 +38,8 @@ const CropDetail = ({cropDetail}) => {
         image: cropDetail.image
       }
 
-      const response = await fetch('http://localhost:3000/myItems', {
-        method: 'POST',
+      const response = await fetch('https://krishi-link-server-side.vercel.app/myItems', {
+                method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },

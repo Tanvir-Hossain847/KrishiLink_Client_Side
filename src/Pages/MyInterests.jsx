@@ -12,7 +12,7 @@ const MyInterests = () => {
     useEffect(() => {
         if(!user?.email) return
 
-        fetch(`http://localhost:3000/interests?email=${user.email}`)
+        fetch(`krishi-link-server-side.vercel.app/interests?email=${user.email}`)
         .then(res => res.json())
         .then(data => {
             // console.log(data);

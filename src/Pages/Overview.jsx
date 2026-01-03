@@ -6,37 +6,33 @@ import Spinner from '../Components/Spinner';
 const Overview = () => {
     const { user } = use(AuthContext);
     const [posts, setPosts] = useState([]);
-    const [interests, setInterests] = useState([]);
     const [cartItems, setCartItems] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Fetch posts
-        fetch(`http://localhost:3000/myposts?email=${user.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setPosts(data);
-            });
-
-        // Fetch interests
-        fetch(`http://localhost:3000/interests?email=${user.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setInterests(data);
-            });
-
-        // Fetch cart items
-        fetch('http://localhost:3000/myItems')
-            .then(res => res.json())
-            .then(data => {
-                setCartItems(data);
-                setLoading(false);
-            });
+        if (!user?.email) return;
+        
+        // Fetch both posts and cart items
+        Promise.all([
+            fetch(`https://krishi-link-server-side.vercel.app/myposts?email=${user.email}`)
+                .then(res => res.json()),
+            fetch('https://krishi-link-server-side.vercel.app/myItems')
+                .then(res => res.json())
+        ])
+        .then(([postsData, cartData]) => {
+            setPosts(Array.isArray(postsData) ? postsData : []);
+            setCartItems(Array.isArray(cartData) ? cartData : []);
+            setLoading(false);
+        })
+        .catch(err => {
+            console.error('Error fetching data:', err);
+            setLoading(false);
+        });
     }, [user]);
 
     if (loading) return <Spinner />;
 
-    const recentPosts = posts.slice(-3).reverse();
+    const recentPosts = Array.isArray(posts) ? posts.slice(-3).reverse() : [];
 
     return (
         <div className="space-y-8">
@@ -58,7 +54,7 @@ const Overview = () => {
             </div>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-white rounded-2xl p-6 shadow-xl border-y-2 border-emerald-600 hover:scale-102 transition-all duration-200">
                     <div className="flex items-center justify-between">
                         <div>
@@ -73,23 +69,6 @@ const Overview = () => {
                     </div>
                     <Link to="/dashboard/my-posts" className="text-emerald-600 text-sm font-bold primary mt-4 inline-block hover:underline">
                         View all posts →
-                    </Link>
-                </div>
-
-                <div className="bg-white rounded-2xl p-6 shadow-xl border-y-2 border-emerald-600 hover:scale-102 transition-all duration-200">
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-gray-500 text-sm primary">My Interests</p>
-                            <h2 className="text-3xl font-bold text-emerald-600">{interests.length}</h2>
-                        </div>
-                        <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                        </div>
-                    </div>
-                    <Link to="/dashboard/my-interests" className="text-emerald-600 text-sm font-bold primary mt-4 inline-block hover:underline">
-                        View interests →
                     </Link>
                 </div>
 
@@ -114,7 +93,7 @@ const Overview = () => {
             {/* Quick Actions */}
             <div className="bg-white rounded-2xl p-6 shadow-xl border-y-2 border-emerald-600">
                 <h2 className="text-xl font-bold primary text-gray-800 mb-4">Quick Actions</h2>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <Link to="/dashboard/add-crop" className="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-emerald-50 hover:scale-102 transition-all duration-200">
                         <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center mb-2">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -138,14 +117,6 @@ const Overview = () => {
                             </svg>
                         </div>
                         <span className="text-sm font-bold primary text-gray-700">Edit Profile</span>
-                    </Link>
-                    <Link to="/cart" className="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-emerald-50 hover:scale-102 transition-all duration-200">
-                        <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center mb-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                        </div>
-                        <span className="text-sm font-bold primary text-gray-700">My Cart</span>
                     </Link>
                 </div>
             </div>

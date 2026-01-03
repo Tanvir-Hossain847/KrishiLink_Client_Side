@@ -9,7 +9,7 @@ const MyPosts = () => {
     const [loader, setloader] = useState(true)
 
     useEffect(() => {
-        fetch(`http://localhost:3000/myposts?email=${user.email}`)
+        fetch(`https://krishi-link-server-side.vercel.app/myposts?email=${user.email}`)
         .then(res => res.json())
         .then(data => {
             // console.log(data);

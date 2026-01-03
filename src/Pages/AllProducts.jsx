@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import SingleCards from '../Components/SingleCards';
 import { FaSearch } from 'react-icons/fa';
 import Error from '../Components/Error';
-import { AuthContext } from '../Context/AuthContext';
 import Spinner from '../Components/Spinner';
 
 const AllProducts = () => {
@@ -11,9 +10,12 @@ const AllProducts = () => {
     const [loading, setLoading] = useState(true)
     const [searchData, setSearchData] = useState('')
     const [searchLoading,  setSearchLoading] = useState(false)
+    const [selectedCategory, setSelectedCategory] = useState('All')
+    const [sortOrder, setSortOrder] = useState('default')
+    const [currentPage, setCurrentPage] = useState(1)
 
     useEffect(() => {
-        fetch('http://localhost:3000/myproducts')
+        fetch('https://krishi-link-server-side.vercel.app/myproducts')
         .then(res => res.json())
         .then(data => {
             setData(data)
@@ -21,7 +23,34 @@ const AllProducts = () => {
         })
     },[])
 
-    const filteredData = data.filter(product => product.name.toLowerCase().includes(searchData.toLowerCase()))
+    // Get unique categories from data (filter out empty/undefined)
+    const categories = ['All', ...new Set(data.map(product => product.type).filter(type => type))];
+
+    // Filter by search and category
+    let filteredData = data.filter(product => 
+        product.name.toLowerCase().includes(searchData.toLowerCase()) &&
+        (selectedCategory === 'All' || product.type === selectedCategory)
+    );
+
+    // Sort by price
+    if (sortOrder === 'low-to-high') {
+        filteredData = [...filteredData].sort((a, b) => a.pricePerUnit - b.pricePerUnit);
+    } else if (sortOrder === 'high-to-low') {
+        filteredData = [...filteredData].sort((a, b) => b.pricePerUnit - a.pricePerUnit);
+    }
+
+    // Calculate items per page to fit all products in exactly 2 pages
+    const itemsPerPage = Math.ceil(filteredData.length / 2) || 1;
+    
+    // Pagination - always 2 pages if there are products
+    const totalPages = filteredData.length > 0 ? 2 : 0;
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const paginatedData = filteredData.slice(startIndex, startIndex + itemsPerPage);
+
+    // Reset to page 1 when filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchData, selectedCategory, sortOrder]);
     
     const handleInput = (e) => {
         const value = e.target.value
@@ -48,19 +77,102 @@ const AllProducts = () => {
                 />
                 </div>
             </div>
+
+            {/* Category and Sort Section */}
+            <div className="w-11/12 mx-auto py-6">
+                <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+                    {/* Category Filter */}
+                    <div className="flex flex-wrap gap-3">
+                        {categories.map(category => (
+                            <button
+                                key={category}
+                                onClick={() => setSelectedCategory(category)}
+                                className={`px-5 py-2 rounded-xl font-bold primary transition-all duration-200 ${
+                                    selectedCategory === category
+                                        ? 'bg-emerald-600 text-white'
+                                        : 'bg-gray-100 text-gray-700 hover:bg-emerald-100'
+                                }`}
+                            >
+                                {category}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Sort Dropdown */}
+                    <div className="flex items-center gap-2">
+                        <span className="font-bold primary text-gray-700">Sort by:</span>
+                        <select
+                            value={sortOrder}
+                            onChange={(e) => setSortOrder(e.target.value)}
+                            className="px-4 py-2 border-2 border-emerald-600 rounded-xl font-bold primary text-gray-700 focus:outline-none"
+                        >
+                            <option value="default">Default</option>
+                            <option value="low-to-high">Price: Low to High</option>
+                            <option value="high-to-low">Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
         {
             loading ? <Spinner></Spinner> :
-        <div className="w-11/12 mx-auto space-y-6 py-6">
+        <div className="w-11/12 mx-auto space-y-6 pb-10">
             <h1 className='font-bold text-xl'>Total {filteredData.length} Produce Found</h1>
         <div >
             {
                 searchLoading ? <Spinner></Spinner> :
                 filteredData.length > 0 ?
-                <div className="grid lg:grid-cols-3 grid-cols-1 gap-5 pb-10 mx-auto">
+                <>
+                <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6 pb-10 mx-auto">
                     {
-                filteredData.map(product => <SingleCards key={product._id} product={product}></SingleCards>)
+                paginatedData.map(product => <SingleCards key={product._id} product={product}></SingleCards>)
                     }
-                </div> : <Error></Error>
+                </div>
+                
+                {/* Pagination */}
+                {totalPages > 1 && (
+                    <div className="flex justify-center items-center gap-2 pb-10">
+                        <button
+                            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                            disabled={currentPage === 1}
+                            className={`px-4 py-2 rounded-xl font-bold primary transition-all duration-200 ${
+                                currentPage === 1
+                                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                    : 'bg-emerald-600 text-white hover:bg-emerald-700'
+                            }`}
+                        >
+                            Previous
+                        </button>
+                        
+                        {[...Array(totalPages)].map((_, index) => (
+                            <button
+                                key={index + 1}
+                                onClick={() => setCurrentPage(index + 1)}
+                                className={`w-10 h-10 rounded-xl font-bold primary transition-all duration-200 ${
+                                    currentPage === index + 1
+                                        ? 'bg-emerald-600 text-white'
+                                        : 'bg-gray-100 text-gray-700 hover:bg-emerald-100'
+                                }`}
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
+                        
+                        <button
+                            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                            className={`px-4 py-2 rounded-xl font-bold primary transition-all duration-200 ${
+                                currentPage === totalPages
+                                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                    : 'bg-emerald-600 text-white hover:bg-emerald-700'
+                            }`}
+                        >
+                            Next
+                        </button>
+                    </div>
+                )}
+                </>
+                : <Error></Error>
             }
         </div>
         </div>

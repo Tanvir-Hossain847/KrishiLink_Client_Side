@@ -10,7 +10,6 @@ import SingleCropDetail from '../Pages/SingleCropDetail';
 import AddCrop from '../Pages/AddCrop';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import MyPosts from '../Pages/MyPosts';
-import MyInterests from '../Pages/MyInterests';
 import NewsPage from '../Pages/NewsPage';
 import Cart from '../Pages/Cart';
 import DashboardLayout from '../Layouts/DashboardLayout';
@@ -29,7 +28,7 @@ export const router = createBrowserRouter([
             index: true,
             path:'/',
             element:<Home></Home>,
-            loader: () => fetch('http://localhost:3000/myproducts')
+            loader: () => fetch('https://krishi-link-server-side.vercel.app/myproducts')
         },
         {
           path: '/allcrops',
@@ -94,10 +93,6 @@ export const router = createBrowserRouter([
       {
         path: 'my-posts',
         element: <MyPosts></MyPosts>
-      },
-      {
-        path: 'my-interests',
-        element: <MyInterests></MyInterests>
       }
     ]
   },
