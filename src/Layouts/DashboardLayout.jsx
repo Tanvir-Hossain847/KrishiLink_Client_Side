@@ -15,7 +15,7 @@ const DashboardLayout = () => {
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           {/* Navbar */}
-          <nav className="navbar w-full bg-white shadow-sm shadow-emerald-600">
+          <nav className="navbar w-full bg-base-100 shadow-sm shadow-emerald-600">
             <label
               htmlFor="my-drawer-4"
               aria-label="open sidebar"
@@ -40,7 +40,7 @@ const DashboardLayout = () => {
               <Link to="/" className="font-bold text-emerald-600 text-xl">
                 KRISHI<span className="text-yellow-500">LINK</span>
               </Link>
-              <span className="text-gray-500 ml-2">/ Dashboard</span>
+              <span className="text-base-content/60 ml-2">/ Dashboard</span>
             </div>
             <div className="flex-none">
               <Link to="/" className="btn btn-ghost text-emerald-600 mr-2">
@@ -49,7 +49,7 @@ const DashboardLayout = () => {
             </div>
           </nav>
           {/* Page content here */}
-          <div className="p-6 bg-gray-50 min-h-screen">
+          <div className="p-6 bg-base-200 min-h-screen">
             <Outlet></Outlet>
           </div>
         </div>
@@ -60,16 +60,16 @@ const DashboardLayout = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <div className="flex min-h-full flex-col bg-white border-r border-gray-200 w-64">
+          <div className="flex min-h-full flex-col bg-base-100 border-r border-base-300 w-64">
             {/* User Profile Section */}
-            <div className="p-6 border-b border-gray-200">
+            <div className="p-6 border-b border-base-300">
               <div className="flex flex-col items-center text-center">
                 <img
                   src={user?.photoURL || "https://via.placeholder.com/50"}
                   alt="Profile"
                   className="w-16 h-16 rounded-full object-cover mb-3"
                 />
-                <h3 className="font-bold text-gray-800">{user?.displayName || "User"}</h3>
+                <h3 className="font-bold text-base-content">{user?.displayName || "User"}</h3>
               </div>
             </div>
 
@@ -83,7 +83,7 @@ const DashboardLayout = () => {
                     `flex items-center gap-3 p-3 rounded-xl transition-all ${
                       isActive
                         ? "bg-emerald-600 text-white"
-                        : "text-gray-700 hover:bg-emerald-50"
+                        : "text-base-content hover:bg-emerald-600/10"
                     }`
                   }
                 >
@@ -100,7 +100,7 @@ const DashboardLayout = () => {
                     `flex items-center gap-3 p-3 rounded-xl transition-all ${
                       isActive
                         ? "bg-emerald-600 text-white"
-                        : "text-gray-700 hover:bg-emerald-50"
+                        : "text-base-content hover:bg-emerald-600/10"
                     }`
                   }
                 >
@@ -117,7 +117,7 @@ const DashboardLayout = () => {
                     `flex items-center gap-3 p-3 rounded-xl transition-all ${
                       isActive
                         ? "bg-emerald-600 text-white"
-                        : "text-gray-700 hover:bg-emerald-50"
+                        : "text-base-content hover:bg-emerald-600/10"
                     }`
                   }
                 >
@@ -134,7 +134,7 @@ const DashboardLayout = () => {
                     `flex items-center gap-3 p-3 rounded-xl transition-all ${
                       isActive
                         ? "bg-emerald-600 text-white"
-                        : "text-gray-700 hover:bg-emerald-50"
+                        : "text-base-content hover:bg-emerald-600/10"
                     }`
                   }
                 >
@@ -147,10 +147,10 @@ const DashboardLayout = () => {
             </ul>
 
             {/* Logout Button */}
-            <div className="p-4 border-t border-gray-200">
+            <div className="p-4 border-t border-base-300">
               <button
                 onClick={handleSignout}
-                className="w-full flex items-center justify-center gap-2 p-3 bg-red-50 text-red-600 rounded-xl hover:bg-red-100 transition-all font-bold"
+                className="w-full flex items-center justify-center gap-2 p-3 bg-red-500/10 text-red-500 rounded-xl hover:bg-red-500/20 transition-all font-bold"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />

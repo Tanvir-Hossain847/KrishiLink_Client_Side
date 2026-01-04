@@ -90,7 +90,7 @@ const AllProducts = () => {
                                 className={`px-5 py-2 rounded-xl font-bold primary transition-all duration-200 ${
                                     selectedCategory === category
                                         ? 'bg-emerald-600 text-white'
-                                        : 'bg-gray-100 text-gray-700 hover:bg-emerald-100'
+                                        : 'bg-base-200 text-base-content hover:bg-emerald-100'
                                 }`}
                             >
                                 {category}
@@ -100,11 +100,11 @@ const AllProducts = () => {
 
                     {/* Sort Dropdown */}
                     <div className="flex items-center gap-2">
-                        <span className="font-bold primary text-gray-700">Sort by:</span>
+                        <span className="font-bold primary text-base-content">Sort by:</span>
                         <select
                             value={sortOrder}
                             onChange={(e) => setSortOrder(e.target.value)}
-                            className="px-4 py-2 border-2 border-emerald-600 rounded-xl font-bold primary text-gray-700 focus:outline-none"
+                            className="px-4 py-2 border-2 border-emerald-600 rounded-xl font-bold primary text-base-content bg-base-100 focus:outline-none"
                         >
                             <option value="default">Default</option>
                             <option value="low-to-high">Price: Low to High</option>
@@ -117,7 +117,7 @@ const AllProducts = () => {
         {
             loading ? <Spinner></Spinner> :
         <div className="w-11/12 mx-auto space-y-6 pb-10">
-            <h1 className='font-bold text-xl'>Total {filteredData.length} Produce Found</h1>
+            <h1 className='font-bold text-xl text-base-content'>Total {filteredData.length} Produce Found</h1>
         <div >
             {
                 searchLoading ? <Spinner></Spinner> :
@@ -137,7 +137,7 @@ const AllProducts = () => {
                             disabled={currentPage === 1}
                             className={`px-4 py-2 rounded-xl font-bold primary transition-all duration-200 ${
                                 currentPage === 1
-                                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                    ? 'bg-base-300 text-base-content/40 cursor-not-allowed'
                                     : 'bg-emerald-600 text-white hover:bg-emerald-700'
                             }`}
                         >
@@ -151,7 +151,7 @@ const AllProducts = () => {
                                 className={`w-10 h-10 rounded-xl font-bold primary transition-all duration-200 ${
                                     currentPage === index + 1
                                         ? 'bg-emerald-600 text-white'
-                                        : 'bg-gray-100 text-gray-700 hover:bg-emerald-100'
+                                        : 'bg-base-200 text-base-content hover:bg-emerald-100'
                                 }`}
                             >
                                 {index + 1}
@@ -163,7 +163,7 @@ const AllProducts = () => {
                             disabled={currentPage === totalPages}
                             className={`px-4 py-2 rounded-xl font-bold primary transition-all duration-200 ${
                                 currentPage === totalPages
-                                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                    ? 'bg-base-300 text-base-content/40 cursor-not-allowed'
                                     : 'bg-emerald-600 text-white hover:bg-emerald-700'
                             }`}
                         >

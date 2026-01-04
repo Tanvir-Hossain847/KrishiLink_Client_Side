@@ -9,11 +9,11 @@ const HeroBanner = () => {
         <h1 className="font-bold primary text-3xl sm:text-4xl text-emerald-600">
           Empowering Farmers, Feeding the Nation
         </h1>
-        <p className="primary sm:text-lg text-sm font-bold">
+        <p className="primary sm:text-lg text-sm font-bold text-base-content">
           Join a trusted platform where farmers and buyers trade crops directly
           — no middlemen, no hassle.
         </p>
-        <p className="primary">
+        <p className="primary text-base-content/80">
           KrishiLink is a modern agricultural marketplace designed to bridge the
           gap between farmers and buyers through technology and trust. Our
           mission is to make crop trading simple, transparent, and fair for

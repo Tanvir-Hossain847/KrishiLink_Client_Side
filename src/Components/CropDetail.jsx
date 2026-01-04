@@ -79,6 +79,38 @@ const CropDetail = ({cropDetail}) => {
         return cropDetail.pricePerUnit * quantity;
     };
 
+    const handleBuyNow = () => {
+        Swal.fire({
+            title: 'Confirm Payment',
+            html: `
+                <div class="text-left">
+                    <p><strong>Product:</strong> ${cropDetail.name}</p>
+                    <p><strong>Quantity:</strong> ${quantity}</p>
+                    <p><strong>Total:</strong> ₹${calculateTotalPrice().toLocaleString()}</p>
+                </div>
+            `,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#059669',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirm Payment',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Order Placed!',
+                    text: 'Your delivery is on the way! 🚚',
+                    icon: 'success',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
+                });
+            }
+        });
+    };
+
     const transportSteps = [
         {
             id: 1,
@@ -115,22 +147,22 @@ const CropDetail = ({cropDetail}) => {
                 <img className='md:w-125 md:h-115 w-11/12 mx-auto rounded-xl object-cover' src={cropDetail.image} alt="" />
             </div>
             <div className="space-y-2 mx-auto md:w-3/6 w-11/12 mt-2">
-                <h1 className='text-6xl primary font-bold'>{cropDetail.name}</h1>
+                <h1 className='text-6xl primary font-bold text-base-content'>{cropDetail.name}</h1>
                 <h1 className='badge bg-emerald-600 text-lg text-white'>{cropDetail.type}</h1>
-                <p className='primary text-lg font-bold'>Price Per Unit: ₹{cropDetail.pricePerUnit}</p>
-                <p className='primary text-lg font-bold'>Unit: {cropDetail.unit}</p>
-                <p className='primary text-lg font-bold'>Quantity Available: {cropDetail.quantity}</p>
-                <p className='primary text-lg font-bold'>Description: {cropDetail.description}</p>
-                <p className='primary text-lg font-bold'>Location: {cropDetail.location}</p>
+                <p className='primary text-lg font-bold text-base-content'>Price Per Unit: ₹{cropDetail.pricePerUnit}</p>
+                <p className='primary text-lg font-bold text-base-content'>Unit: {cropDetail.unit}</p>
+                <p className='primary text-lg font-bold text-base-content'>Quantity Available: {cropDetail.quantity}</p>
+                <p className='primary text-lg font-bold text-base-content'>Description: {cropDetail.description}</p>
+                <p className='primary text-lg font-bold text-base-content'>Location: {cropDetail.location}</p>
 
                 {/* Add to Cart Form */}
-                <div className="mt-8 p-6 bg-gray-50 rounded-2xl border border-gray-200">
-                    <h2 className="text-xl font-bold primary mb-4">Add to Cart</h2>
+                <div className="mt-8 p-6 bg-base-200 rounded-2xl border border-base-300">
+                    <h2 className="text-xl font-bold primary mb-4 text-base-content">Add to Cart</h2>
                     
                     <div className="space-y-4">
                         {/* Quantity Selector */}
                         <div className="flex items-center gap-4">
-                            <label className="text-base font-bold primary">Quantity:</label>
+                            <label className="text-base font-bold primary text-base-content">Quantity:</label>
                             <div className="flex items-center">
                                 <button 
                                     onClick={decrementQuantity}
@@ -145,7 +177,7 @@ const CropDetail = ({cropDetail}) => {
                                     min="1"
                                     name='quantityReq'
                                     max={cropDetail.quantity}
-                                    className="w-16 h-9 text-center text-base font-bold border-y border-gray-300 outline-none"
+                                    className="w-16 h-9 text-center text-base font-bold border-y border-base-300 bg-base-100 outline-none text-base-content"
                                 />
                                 <button 
                                     onClick={incrementQuantity}
@@ -154,12 +186,12 @@ const CropDetail = ({cropDetail}) => {
                                     +
                                 </button>
                             </div>
-                            <span className="text-sm text-gray-500">/ {cropDetail.quantity} available</span>
+                            <span className="text-sm text-base-content/60">/ {cropDetail.quantity} available</span>
                         </div>
 
                         {/* Total Price */}
-                        <div className="flex items-center gap-4 py-4 border-t border-gray-200">
-                            <span className="text-base font-bold primary">Total Price:</span>
+                        <div className="flex items-center gap-4 py-4 border-t border-base-300">
+                            <span className="text-base font-bold primary text-base-content">Total Price:</span>
                             <span className="text-2xl font-bold text-emerald-600">
                                 ₹{calculateTotalPrice().toLocaleString()}
                             </span>
@@ -171,7 +203,7 @@ const CropDetail = ({cropDetail}) => {
                         </button>
 
                         {/* Buy Now Button */}
-                        <button className="w-full py-3 border-2 border-emerald-600 text-emerald-600 text-sm font-bold rounded-xl hover:bg-emerald-600 hover:text-white transition-all duration-200">
+                        <button onClick={handleBuyNow} className="w-full py-3 border-2 border-emerald-600 text-emerald-600 text-sm font-bold rounded-xl hover:bg-emerald-600 hover:text-white transition-all duration-200">
                             Buy Now
                         </button>
                     </div>
@@ -181,14 +213,14 @@ const CropDetail = ({cropDetail}) => {
 
         {/* Transportation Procedure Section */}
         <div className="w-11/12 mx-auto my-20">
-            <h2 className="text-3xl font-bold text-black text-center mb-10 primary">Transportation Procedure</h2>
+            <h2 className="text-3xl font-bold text-base-content text-center mb-10 primary">Transportation Procedure</h2>
             <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6">
                 {transportSteps.map((step, index) => (
                     <div key={step.id} className="relative">
-                        <div className="bg-white rounded-2xl p-6 shadow-xl border-y-2 border-emerald-600 hover:scale-103 transition-all duration-200 text-center">
+                        <div className="bg-base-100 rounded-2xl p-6 shadow-xl border-y-2 border-emerald-600 hover:scale-103 transition-all duration-200 text-center">
                             <div className="text-5xl mb-4">{step.icon}</div>
-                            <h3 className="text-lg font-bold primary text-gray-800 mb-2">{step.title}</h3>
-                            <p className="text-gray-600 primary text-sm">{step.description}</p>
+                            <h3 className="text-lg font-bold primary text-base-content mb-2">{step.title}</h3>
+                            <p className="text-base-content/70 primary text-sm">{step.description}</p>
                         </div>
                         {index < transportSteps.length - 1 && (
                             <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
@@ -203,20 +235,20 @@ const CropDetail = ({cropDetail}) => {
         {/* Related Products Section */}
         {relatedProducts.length > 0 && (
             <div className="w-11/12 mx-auto my-20">
-                <h2 className="text-3xl font-bold text-black text-center mb-10 primary">Related Products</h2>
+                <h2 className="text-3xl font-bold text-base-content text-center mb-10 primary">Related Products</h2>
                 <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6">
                     {relatedProducts.map(product => (
-                        <div key={product._id} className="bg-white rounded-2xl shadow-xl border-y-2 border-emerald-600 hover:scale-103 transition-all duration-200 overflow-hidden">
+                        <div key={product._id} className="bg-base-100 rounded-2xl shadow-xl border-y-2 border-emerald-600 hover:scale-103 transition-all duration-200 overflow-hidden">
                             <img 
                                 src={product.image} 
                                 alt={product.name}
                                 className="w-full h-48 object-cover"
                             />
                             <div className="p-4 space-y-2">
-                                <h3 className="text-xl font-bold primary text-gray-800">{product.name}</h3>
+                                <h3 className="text-xl font-bold primary text-base-content">{product.name}</h3>
                                 <span className="badge bg-emerald-600 text-white px-3 py-1 rounded-lg text-sm">{product.type}</span>
                                 <p className="text-emerald-600 font-bold primary">₹{product.pricePerUnit} / {product.unit}</p>
-                                <p className="text-gray-500 text-sm primary">{product.location}</p>
+                                <p className="text-base-content/60 text-sm primary">{product.location}</p>
                                 <Link 
                                     to={`/allcrops/${product._id}`}
                                     className="block w-full text-center py-2 bg-emerald-600 text-white font-bold rounded-xl hover:bg-emerald-700 transition-all duration-200 mt-3"

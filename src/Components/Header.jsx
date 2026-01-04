@@ -1,10 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
+import { FaSun, FaMoon } from 'react-icons/fa';
 
 const Header = () => {
     const {user, signOutUser} = useContext(AuthContext);
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
     
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme(theme === 'light' ? 'dark' : 'light');
+    };
+
     const handleSignout = () =>{
         signOutUser()
         .then()
@@ -30,7 +41,7 @@ const Header = () => {
     }
     </>
     return (
-        <div className="lg:px-12 mx-auto navbar shadow-sm shadow-emerald-600">
+        <div className="lg:px-12 mx-auto navbar shadow-sm shadow-emerald-600 bg-base-100">
   <div className="navbar-start">
     <div className="dropdown">
        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -40,7 +51,7 @@ const Header = () => {
           </div>
       <ul
         tabIndex={0}
-        className="menu primary menu-sm dropdown-content bg-white rounded-box z-100 mt-3 w-52 p-2 shadow">
+        className="menu primary menu-sm dropdown-content bg-base-100 rounded-box z-100 mt-3 w-52 p-2 shadow">
        {links}
       </ul>
     </div>
@@ -58,7 +69,15 @@ const Header = () => {
       {links}
     </ul>
   </div>
-  <div className="navbar-end">
+  <div className="navbar-end gap-2">
+    {/* Theme Toggle */}
+    <button 
+      onClick={toggleTheme} 
+      className="btn btn-ghost btn-circle text-emerald-600"
+    >
+      {theme === 'light' ? <FaMoon className="text-xl" /> : <FaSun className="text-xl" />}
+    </button>
+
     {
         user ? 
         (<>
@@ -75,16 +94,16 @@ const Header = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu dropdown-content bg-white rounded-xl z-50 mt-3 w-64 p-3 shadow-lg border border-gray-100"
+            className="menu dropdown-content bg-base-100 rounded-xl z-50 mt-3 w-64 p-3 shadow-lg border border-base-300"
           >
-            <li className="p-3 border-b border-gray-100 mb-2">
+            <li className="p-3 border-b border-base-300 mb-2">
               <div className="flex flex-col items-start hover:bg-transparent cursor-default">
-                <span className="font-bold text-gray-800 text-lg">{user?.displayName}</span>
-                <span className="text-sm text-gray-500">{user?.email}</span>
+                <span className="font-bold text-base-content text-lg">{user?.displayName}</span>
+                <span className="text-sm text-base-content/60">{user?.email}</span>
               </div>
             </li>
             <li>
-              <Link to="/dashboard/profile" className="text-emerald-600 hover:bg-emerald-50 py-3 text-base">
+              <Link to="/dashboard/profile" className="text-emerald-600 hover:bg-emerald-600/10 py-3 text-base">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
@@ -92,15 +111,15 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link to="/dashboard" className="text-emerald-600 hover:bg-emerald-50 py-3 text-base">
+              <Link to="/dashboard" className="text-emerald-600 hover:bg-emerald-600/10 py-3 text-base">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                 </svg>
                 Dashboard
               </Link>
             </li>
-            <li className="mt-2 pt-2 border-t border-gray-100">
-              <button onClick={handleSignout} className="text-red-500 hover:bg-red-50 py-3 text-base">
+            <li className="mt-2 pt-2 border-t border-base-300">
+              <button onClick={handleSignout} className="text-red-500 hover:bg-red-500/10 py-3 text-base">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                 </svg>

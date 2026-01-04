@@ -32,10 +32,10 @@ const WhyChooseUs = () => {
         <div className='w-11/12 mx-auto'>
             <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8">
                 {features.map(feature => (
-                    <div key={feature.id} className="bg-white rounded-2xl p-8 shadow-xl border-y-2 border-emerald-600 hover:scale-103 transition-all duration-200 text-center">
+                    <div key={feature.id} className="bg-base-100 rounded-2xl p-8 shadow-xl border-y-2 border-emerald-600 hover:scale-103 transition-all duration-200 text-center">
                         <div className="text-6xl mb-4">{feature.icon}</div>
-                        <h3 className="text-xl font-bold primary text-gray-800 mb-3">{feature.title}</h3>
-                        <p className="text-gray-600 primary">{feature.description}</p>
+                        <h3 className="text-xl font-bold primary text-base-content mb-3">{feature.title}</h3>
+                        <p className="text-base-content/70 primary">{feature.description}</p>
                     </div>
                 ))}
             </div>
